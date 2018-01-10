@@ -35,5 +35,6 @@ drag_margin/bottom = 0.2
 texture = ExtResource( 2 )
 vframes = 3
 hframes = 3
+frame = 2
 
 
