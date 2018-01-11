@@ -3,8 +3,9 @@ extends KinematicBody2D
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
-const WALK_SPEED = 100
+const FLIGHT_SPEED = 100
 var vel = Vector2()
+
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -17,10 +18,10 @@ func _process(delta):
 	vel.y = 0
 
 	if (Input.is_action_pressed("ui_left")):
-		vel.x = -WALK_SPEED
+		vel.x = -FLIGHT_SPEED
 		get_node("Sprite").set_frame(1)
 	elif (Input.is_action_pressed("ui_right")):
-		vel.x =  WALK_SPEED
+		vel.x =  FLIGHT_SPEED
 		get_node("Sprite").set_frame(2)
 	else:
 		vel.x = 0
