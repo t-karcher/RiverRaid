@@ -6,22 +6,28 @@ extends Node2D
 var screensize
 var rivers = randi()%11+1
 var grid_map = []
-var columns = 10
-var rows = 10
+var columns = 20
+var rows = 100
+var fill_factor = 0.8
+var rand_value = 0
 
 onready var plane = get_node("plane")
 
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
-	screensize = get_viewport().get_rect().size
+	generate_grid_map()
+	draw_tiles()
 	
 func generate_grid_map():
 	for x in range(0, columns + 1):
 		grid_map.append([])
 		for y in range(0, rows + 1):
 			randomize()
-			var rand_value = int(rand_range(0, 2))
+			if rand_range(0, 2) < fill_factor:
+				rand_value = 1
+			else:
+				rand_value = 0
 			grid_map[x].append(rand_value)
 			
 func draw_tiles():

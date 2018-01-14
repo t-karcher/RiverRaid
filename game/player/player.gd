@@ -11,7 +11,7 @@ func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
 	set_process(true)
-	get_node("Camera2D").set_zoom(Vector2(0.2, 0.2))
+	# get_node("Camera2D").set_zoom(Vector2(0.2, 0.2))
 	
 func _process(delta):
 	# set_pos(get_pos()+vel*delta)
@@ -26,5 +26,13 @@ func _process(delta):
 	else:
 		vel.x = 0
 		get_node("Sprite").set_frame(0)
+	if (Input.is_action_pressed("ui_up")):
+		vel.y = -FLIGHT_SPEED
+		get_node("Sprite").set_frame(1)
+	elif (Input.is_action_pressed("ui_down")):
+		vel.y =  FLIGHT_SPEED
+		get_node("Sprite").set_frame(2)
+	else:
+		vel.y = 0
 	var motion = vel * delta
 	move(motion)
