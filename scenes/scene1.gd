@@ -8,7 +8,7 @@ var rivers = randi()%11+1
 var grid_map = []
 var columns = 20
 var rows = 100
-var fill_factor = 0.8
+var fill_factor = 0.2
 var rand_value = 0
 
 onready var plane = get_node("plane")
