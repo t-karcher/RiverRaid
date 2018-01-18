@@ -5,18 +5,21 @@ extends KinematicBody2D
 # var b = "textvar"
 const FLIGHT_SPEED = 100
 var vel = Vector2()
+onready var timer = get_node("Timer")
+var canShoot = true
 
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
+	#create shot delay
+	timer.connect("timeout",self,"on_timeout_complete")
+	set_process_input(true)
 	set_process(true)
 	# get_node("Camera2D").set_zoom(Vector2(0.2, 0.2))
 	
-func _process(delta):
-	# set_pos(get_pos()+vel*delta)
-	vel.y = 0
-
+func on_timeout_complete():
+	canShoot = true
+	
+func _input(event):
 	if (Input.is_action_pressed("ui_left")):
 		vel.x = -FLIGHT_SPEED
 		get_node("Sprite").set_frame(1)
@@ -32,5 +35,14 @@ func _process(delta):
 		vel.y =  FLIGHT_SPEED
 	else:
 		vel.y = 0
+	
+	if (Input.is_key_pressed(KEY_SPACE) && canShoot):
+		get_node("SamplePlayer").play("player_shooting")
+		canShoot = false
+		timer.start()
+	
+func _process(delta):
 	var motion = vel * delta
 	move(motion)
+	
+	
