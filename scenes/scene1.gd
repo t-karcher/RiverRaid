@@ -6,7 +6,7 @@ extends Node2D
 var screensize
 var rivers = randi()%11+1
 var grid_map = []
-var columns = 50
+var columns = 52
 var rows = 1000
 var fill_factor = 0.2
 var rand_value = 0
@@ -34,12 +34,12 @@ func generate_grid_map():
 			randomize()
 			if x == 0:
 				tempCentre = riverCentre[y] + rand_range(-1,1)*centreNoise
-				tempCentre = max(tempCentre,riverWidth[y]/2+0.05)
-				tempCentre = min(tempCentre,1-riverWidth[y]/2-0.05)
+				tempCentre = max(tempCentre,riverWidth[y]/2+0.1)
+				tempCentre = min(tempCentre,1-riverWidth[y]/2-0.1)
 				riverCentre.append(tempCentre)
 				tempWidth = riverWidth[y] + rand_range(-1,1)*widthNoise
 				tempWidth = max(minWidth, tempWidth)
-				tempWidth = min(0.9, tempWidth)
+				tempWidth = min(0.8, tempWidth)
 				riverWidth.append(tempWidth)
 				
 			#if rand_range(0, 2) < fill_factor:
@@ -62,5 +62,5 @@ func draw_tiles():
 			var dot_3 = grid_map[x+1][y+1]
 			var dot_4 = grid_map[x][y+1]
 			var value = dot_1 + (dot_2*2) + (dot_3*4) + (dot_4*8)
-			get_node("tile_map").set_cellv(Vector2(x,y), value)
+			get_node("tile_map").set_cellv(Vector2(x,y-rows), value)
 
