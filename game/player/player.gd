@@ -28,12 +28,9 @@ func _process(delta):
 		get_node("Sprite").set_frame(0)
 	if (Input.is_action_pressed("ui_up")):
 		vel.y = -FLIGHT_SPEED
-		get_node("Sprite").set_frame(0)
 	elif (Input.is_action_pressed("ui_down")):
 		vel.y =  FLIGHT_SPEED
-		get_node("Sprite").set_frame(0)
 	else:
 		vel.y = 0
-		get_node("Sprite").set_frame(0)
 	var motion = vel * delta
 	move(motion)
