@@ -11,6 +11,8 @@ func _fixed_process(delta):
 	if get_node("KinematicBody2D").get_global_pos().y < 6000:
 		#get_node(".").queue_free()
 		pass
+	if get_node("KinematicBody2D").is_colliding():
+		get_node(".").queue_free()
 		
 func set_pos(newPos):
 	get_node("KinematicBody2D").set_pos(newPos)

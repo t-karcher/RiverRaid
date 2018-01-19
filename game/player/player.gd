@@ -45,6 +45,7 @@ func _process(delta):
 	else:
 		vel.y = 0
 	
+	#fire laser
 	if (Input.is_key_pressed(KEY_SPACE) && canShoot):
 		timer.start()
 		get_node("SamplePlayer").play("player_shooting")
@@ -58,5 +59,11 @@ func _process(delta):
 		laserInstance.get_node("KinematicBody2D").add_collision_exception_with(get_node("."))
 		#get_node("Laser"+str(laserCount)+"/KinematicBody2D").add_collision_exception_with(get_node("."))
 		canShoot = false
-	
+		
+	if get_node(".").is_colliding():
+		get_node("Sprite").set_frame(3)
+		get_node("Sprite").set_frame(4)
+		get_node("Sprite").set_frame(5)
+		get_node("Sprite").set_frame(4)
+		get_node("Sprite").set_frame(3)	
 	
