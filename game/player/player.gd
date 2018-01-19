@@ -50,12 +50,13 @@ func _process(delta):
 		get_node("SamplePlayer").play("player_shooting")
 		laserCount += 1
 		var laserInstance = laser.instance()
-		laserInstance.set_name("laser"+str(laserCount))
+		laserInstance.set_name("Laser"+str(laserCount))
 		get_parent().add_child(laserInstance)
 		laserInstance.set_owner(self)
 		laserInstance.set_pos(get_pos()+Vector2(0,-12))
 		#ignore collisions with plane itself
-		# get_node("laser"+str(laserCount)+"/KinematicBody2D").add_collision_exception_with(get_node("."))
+		laserInstance.get_node("KinematicBody2D").add_collision_exception_with(get_node("."))
+		#get_node("Laser"+str(laserCount)+"/KinematicBody2D").add_collision_exception_with(get_node("."))
 		canShoot = false
 	
 	

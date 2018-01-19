@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 1.16735, 3.94195 )
+extents = Vector2( 1.16735, 3.98945 )
 
 [node name="Node2D" type="Node2D"]
 
@@ -14,6 +14,7 @@ script/script = ExtResource( 1 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 
+transform/scale = Vector2( 3, 3 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
