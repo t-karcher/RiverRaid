@@ -7,6 +7,8 @@ const FLIGHT_SPEED = 100
 var vel = Vector2()
 onready var timer = get_node("Timer")
 var canShoot = true
+var laser = preload("res://scenes/laser.tscn")
+var laserCount = 0
 
 
 func _ready():
@@ -37,9 +39,16 @@ func _input(event):
 		vel.y = 0
 	
 	if (Input.is_key_pressed(KEY_SPACE) && canShoot):
-		get_node("SamplePlayer").play("player_shooting")
-		canShoot = false
 		timer.start()
+		get_node("SamplePlayer").play("player_shooting")
+		laserCount += 1
+		var laserInstance = laser.instance()
+		laserInstance.set_name("laser"+str(laserCount))
+		add_child(laserInstance)
+		laserInstance.set_owner(self)
+		laserInstance.set_pos(get_pos()+Vector2(0,-12))
+		canShoot = false
+		
 	
 func _process(delta):
 	var motion = vel * delta
