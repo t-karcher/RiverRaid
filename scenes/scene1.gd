@@ -25,6 +25,7 @@ func _ready():
 	# Initialization here
 	generate_grid_map()
 	draw_tiles()
+	plane.set_pos(Vector2(300,100))
 	
 func generate_grid_map():
 	for x in range(0, columns + 1):

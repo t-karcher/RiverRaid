@@ -14,14 +14,21 @@ var laserCount = 0
 func _ready():
 	#create shot delay
 	timer.connect("timeout",self,"on_timeout_complete")
-	set_process_input(true)
+	#set_process_input(true)
 	set_process(true)
 	# get_node("Camera2D").set_zoom(Vector2(0.2, 0.2))
 	
 func on_timeout_complete():
 	canShoot = true
 	
-func _input(event):
+#func _input(event):
+	
+		
+	
+func _process(delta):
+	var motion = vel * delta
+	move(motion)
+	
 	if (Input.is_action_pressed("ui_left")):
 		vel.x = -FLIGHT_SPEED
 		get_node("Sprite").set_frame(1)
@@ -44,14 +51,11 @@ func _input(event):
 		laserCount += 1
 		var laserInstance = laser.instance()
 		laserInstance.set_name("laser"+str(laserCount))
-		add_child(laserInstance)
+		get_parent().add_child(laserInstance)
 		laserInstance.set_owner(self)
 		laserInstance.set_pos(get_pos()+Vector2(0,-12))
+		#ignore collisions with plane itself
+		# get_node("laser"+str(laserCount)+"/KinematicBody2D").add_collision_exception_with(get_node("."))
 		canShoot = false
-		
-	
-func _process(delta):
-	var motion = vel * delta
-	move(motion)
 	
 	
